@@ -1,0 +1,38 @@
+programa 
+"leao_ou_cachorro"
+var 
+    numero quadrado, leao, cachorro;
+    binario escolheu_leao,escolheu_cachorro ;
+{
+
+quadrado: criar_figura("quadrado", "blue", 500, 500, 50);
+leao:criar_imagem("leao.png",200,200);
+cachorro:criar_imagem("cachorro.png",300,300);
+escolheu_leao:f;
+escolheu_cachorro:f;
+  
+enquanto(v) {
+    tecla: consultar();
+        se (tecla = 1){
+            mover(quadrado, 0, -20);
+        }
+        se (tecla = 2){
+            mover(quadrado, 0, 20);            
+        }
+        se (tecla = 3){
+            mover(quadrado, -20, 0);          
+        }
+        se (tecla = 4){
+            mover(quadrado, 20, 0);         
+        }
+        escolheu_leao: colidiu(quadrado, leao);
+  		escolheu_cachorro: colidiu(quadrado, cachorro);
+        se(escolheu_cachorro) {
+            tocar("cachorro.mp3");
+        }
+  		se(escolheu_leao){
+        	tocar("leao.mp3);
+        }
+
+}
+}

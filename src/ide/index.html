@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <title>IDE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <img alt="Logo" src="https://appproject.dhiwise.com/dhiwise-logo.png?c=&v="
+        style="width: 0px; height: 0px; display: none" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/mode/javascript/javascript.min.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.2.2/introjs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.2.2/intro.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="column1">
+            <h1>Pimpolhos</h1>
+            <div class="input-group">
+                <label for="terapeutaInput">Terapeuta:</label>
+                <!-- WCAG 1.3.1: Fornecer rótulos para os campos de entrada -->
+                <!-- WCAG 2.1.1: Garantir que a navegação por teclado siga uma ordem lógica e intuitiva. -->
+                <input type="text" id="terapeutaInput" name="terapeuta" tabindex="1">
+            </div>
+            <div class="input-group">
+                <label for="pacienteInput">Paciente:</label>
+                <input type="text" id="pacienteInput" name="paciente" tabindex="2">
+            </div>
+            <div class="input-group">
+                <label for="projetoInput">Projeto:</label>
+                <input type="text" id="projetoInput" name="projeto" tabindex="3">
+            </div>
+            <button id="saveBtn" tabindex="4">Salvar</button>
+            <button id="loadBtn" tabindex="6">Abrir</button>
+            <button id="compileBtn" tabindex="5">Verificar</button>
+            <button id="gerarBtn" tabindex="5">Gerar</button>
+            <p>
+                <a href="http://127.0.0.1:8000">Página do jogo</a>.
+            </p>
+
+        </div>
+        <div class="column2">
+            <!-- WCAG 2.4.2: Adicionar uma etiqueta (aria-label) ao textarea para melhor identificação -->
+            <textarea id="editor" tabindex="7" aria-label="Editor de código"></textarea>
+
+            <div id="myModal" class="modal" role="dialog" aria-labelledby="modalTitle"
+                aria-describedby="modalDescription">
+                <div class="modal-content">
+                    <!-- WCAG 1.1.1: Fornecer uma descrição acessível para o botão de fechar -->
+                    <span class="close" role="button" aria-label="Fechar">&times;</span>
+                    <h2 id="modalTitle">Selecione um registro</h2>
+                    <div id="modalDescription">Escolha um registro na tabela abaixo.</div>
+                    <div class="table-container">
+                        <div class="table-header">
+                            <span>ID</span>
+                            <span>Terapeuta</span>
+                            <span>Paciente</span>
+                            <span>Projeto</span>
+                            <span>Ação</span>
+                        </div>
+                        <div id="rowsContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column3">
+            <h1>Arquivos</h1>
+            <p>cachorro.png</p>
+            <p>cachorro.mp3</p>
+            <p>leao.png</p>
+            <p>leao.mp3</p>
+            <p>floresta.jpg</p>
+            <button id="importBtn" tabindex="8">Importar</button>
+            <button id="startTutorial" tabindex="9" data-intro="Clique aqui para iniciar o tutorial." area-label="Iniciar Tutorial">Iniciar Tutorial</button>
+            <button id="glossarioBtn" tabindex="10">Glossário</button>
+            <!-- Modal para Glossário -->
+            <div id="glossarioModal" class="modal" role="dialog" aria-labelledby="glossarioModalTitle" aria-describedby="glossarioModalDescription">
+                <div class="modal-content">
+                    <span class="close" role="button" aria-label="Fechar">&times;</span>
+                    <h2 id="glossarioModalTitle">Glossário - Linguagem FOFI para Terapeutas Ocupacionais</h2>
+                    <div id="glossarioModalDescription">
+                    
+
+                        <h3>Breve Descrição da Linguagem FOFI</h3>
+                        <p><strong>FOFI</strong> (Framework Orientado para Facilitação Inclusiva) é uma linguagem de programação projetada para criar atividades interativas e inclusivas, especialmente desenvolvida para ser utilizada por terapeutas ocupacionais em sessões com crianças com Transtorno do Espectro Autista (TEA). A FOFI permite a criação de brincadeiras programáveis que ajudam no desenvolvimento de habilidades cognitivas e motoras das crianças de forma lúdica e envolvente.</p>
+                        
+                        <h3>Principais Componentes da Linguagem FOFI</h3>
+                        
+                        <h4>Tipos de Dados</h4>
+                        <ul>
+                            <li><strong>numero</strong>: Representa números inteiros.</li>
+                            <li><strong>binario</strong>: Representa valores booleanos (verdadeiro ou falso).</li>
+                            <li><strong>texto</strong>: Representa cadeias de caracteres (strings).</li>
+                        </ul>
+                        
+                        <h4>Atribuição</h4>
+                        <p><strong>:</strong> (dois pontos) é utilizado para atribuir valores a variáveis.</p>
+                        
+                        <h4>Operadores</h4>
+                        <ul>
+                            <li><strong>Aritméticos</strong>: `+` (adição), `-` (subtração), `*` (multiplicação), `/` (divisão inteira), `%` (resto da divisão), `^` (exponenciação).</li>
+                            <li><strong>Relacionais</strong>: `=` (igual), `!=` (diferente), `>` (maior), `<` (menor), `>=` (maior ou igual), `<=` (menor ou igual).</li>
+                            <li><strong>Lógicos</strong>: `e` (AND), `ou` (OR), `nao` (NOT).</li>
+                        </ul>
+                        
+                        <h4>Estruturas de Fluxo</h4>
+                        <ul>
+                            <li><strong>Condicionais</strong>: `se (condição) { ... } senao { ... }`</li>
+                            <li><strong>Repetição</strong>: `enquanto (condição) { ... }` e `repita (número de vezes) { ... }`</li>
+                        </ul>
+                        
+                        <h4>Marcadores de Bloco</h4>
+                        <ul>
+                            <li><strong>{</strong> (abre um bloco)</li>
+                            <li><strong>}</strong> (fecha um bloco)</li>
+                        </ul>
+                        
+                        <h4>Terminador de Declarações</h4>
+                        <p><strong>;</strong> (ponto e vírgula) é usado para finalizar declarações.</p>
+                        
+                        <h4>Comentários</h4>
+                        <ul>
+                            <li><strong>/# ... #/</strong>: Comentário de várias linhas.</li>
+                            <li><strong># ...</strong>: Comentário de uma única linha.</li>
+                        </ul>
+                        
+                        <h3>Sintaxe Básica (Exemplo)</h3>
+                        <pre><code>programa
+                        "Descrição do programa (como uma string)"
+                        
+                        /# Este é um comentário de múltiplas linhas #/
+                        
+                        # Comentário de uma única linha
+                        var
+                        numero x, y, z; 
+                        texto a, b;
+                        
+                        {
+                            x: 0;
+                            y: 5;
+                            a: "ola";
+                            b: "mundo";
+                        
+                            se (a = b e b != a){
+                                mostrar("Ola");
+                            }
+                            senao {
+                                mostrar("nao sei");
+                            }
+                        
+                            enquanto (x < y) {
+                                x: x + 1;
+                                mostrar(x);
+                            }
+                        
+                            repita(10) {
+                                /# o que estiver aqui dentro será repetido 10 vezes. #/
+                            }
+                        }
+                        </code></pre>
+                        
+                        <h3>Funções Prontas (Built-in)</h3>
+                        <ul>
+                            <li><strong>Funções de Entrada de Dados</strong>:
+                                <ul>
+                                    <li><strong>ler_numero(msg)</strong>: Solicita um número inteiro do usuário.</li>
+                                    <li><strong>ler_binario(msg)</strong>: Solicita uma confirmação (verdadeiro/falso) do usuário.</li>
+                                    <li><strong>ler()</strong>: Espera uma entrada do tapete sensível ao toque.</li>
+                                    <li><strong>consultar()</strong>: Verifica a última entrada do tapete.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Funções de Manipulação de Imagens e Figuras</strong>:
+                                <ul>
+                                    <li><strong>criar_figura(tipo, cor, x, y, tamanho)</strong>: Cria uma figura (círculo ou quadrado) na tela.</li>
+                                    <li><strong>criar_imagem(arq, x, y)</strong>: Carrega uma imagem no canvas.</li>
+                                    <li><strong>colidiu(ref1, ref2)</strong>: Verifica se duas figuras ou imagens colidiram.</li>
+                                    <li><strong>aleatorio(min, max)</strong>: Gera um número aleatório entre `min` e `max`.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Funções de Saída de Dados</strong>:
+                                <ul>
+                                    <li><strong>mostrar(valor)</strong>: Exibe um valor na tela.</li>
+                                    <li><strong>limpar()</strong>: Limpa o canvas.</li>
+                                    <li><strong>inicializar_com_cor(cor)</strong>: Define a cor de fundo do canvas.</li>
+                                    <li><strong>inicializar_com_imagem(arq)</strong>: Define uma imagem de fundo para o canvas.</li>
+                                    <li><strong>redefinir_figura(ref, tipo, cor, x, y, tamanho)</strong>: Modifica uma figura existente.</li>
+                                    <li><strong>redefinir_imagem(ref, arq, x, y)</strong>: Modifica uma imagem existente.</li>
+                                    <li><strong>mover(ref, dx, dy)</strong>: Move uma figura existente.</li>
+                                    <li><strong>destacar(ref)</strong>: Destaca uma figura, tornando as outras translúcidas.</li>
+                                    <li><strong>reverter_destaque()</strong>: Reverte o destaque das figuras.</li>
+                                    <li><strong>tocar(arq)</strong>: Reproduz um arquivo de áudio.</li>
+                                    <li><strong>esperar(t)</strong>: Pausa a execução do programa por `t` milissegundos.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Palavras Reservadas</h3>
+                        <p>As palavras reservadas da linguagem FOFI são utilizadas para definir a estrutura e o comportamento dos programas e não podem ser utilizadas como nomes de variáveis.</p>
+                        <ul>
+                            <li>programa</li>
+                            <li>var</li>
+                            <li>binario</li>
+                            <li>numero</li>
+                            <li>texto</li>
+                            <li>se</li>
+                            <li>senao</li>
+                            <li>enquanto</li>
+                            <li>repita</li>
+                            <li>v</li>
+                            <li>f</li>
+                            <li>nao</li>
+                            <li>e</li>
+                            <li>ou</li>
+                            <li>ler_numero</li>
+                            <li>ler_binario</li>
+                            <li>ler</li>
+                            <li>consultar</li>
+                            <li>criar_figura</li>
+                            <li>criar_imagem</li>
+                            <li>colidiu</li>
+                            <li>aleatorio</li>
+                            <li>mostrar</li>
+                            <li>limpar</li>
+                            <li>inicializar_com_cor</li>
+                            <li>inicializar_com_imagem</li>
+                            <li>redefinir_figura</li>
+                            <li>redefinir_imagem</li>
+                            <li>mover</li>
+                            <li>destacar</li>
+                            <li>reverter_destaque</li>
+                            <li>tocar</li>
+                            <li>esperar</li>
+                        </ul>
+                        
+                        <h3>Considerações Finais</h3>
+                        <p>A linguagem FOFI foi desenvolvida para ser acessível e intuitiva, permitindo que terapeutas ocupacionais criem atividades interativas que apoiem o desenvolvimento das crianças com TEA. Sua simplicidade e foco em elementos visuais e de interação tornam a FOFI uma ferramenta poderosa para criar experiências educativas e terapêuticas personalizadas.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
